@@ -5,12 +5,11 @@
 download.file("https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip",
               destfile = "./zippedfile.zip", method = "curl")
 
-library(tidyverse) # the dplyr package from tidyverse makes working with tables
-# easier
+library(tidyverse) # the dplyr package from tidyverse makes working with tables easier
 
 # read the data from the .txt file in the downloaded zipped file
 data <- as_tibble(read.table(unz("./zippedfile.zip", "household_power_consumption.txt"),
-                   sep = ";", header = TRUE, na.strings = "?"))
+                  sep = ";", header = TRUE, na.strings = "?"))
 
 # create a datetime variable (this will be helpful later on)
 data <- mutate(data, datetime = paste(data$Date, data$Time, sep = " ")) %>%
